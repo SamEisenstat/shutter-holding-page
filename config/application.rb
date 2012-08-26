@@ -56,6 +56,9 @@ module ShutterkickHoldingPage
     # Enable the asset pipeline
     config.assets.enabled = true
 
+    # Specify which assets to precompile
+    config.assets.precompile += %w(*.js *.js.coffee *.css *.css.scss *.css.scss.erb)
+
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
   end
