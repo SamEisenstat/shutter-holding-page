@@ -1,1 +1,791 @@
-function textShadowForMSIE(a){var b=function(){if(isMSIE){var b=[];if(a){b[b.length]=a;return b}else{b=[];for(var c=/text\-shadow\s*:\s*([0-9a-zA-Z\s\-\+\*\&#\.\(\)%\,\!\"\\'\>\<\\]+);?/,d=document.getElementsByTagName("*"),e=cNum(),f=0,g=d.length;f<g;f++){if(d[f].style!=null&&d[f].style.cssText.match(c)){d[f].id==""&&(d[f].id="objId"+e,e++);b[b.length]={sel:"#"+d[f].id,shadow:RegExp.$1}}}return j().concat(b)}}else{return null}};var c=function(a,b){return isMSIE&&(ieVersion<9||document.documentMode<9)?a.currentStyle:b!=null?document.defaultView.getComputedStyle(a,b):document.defaultView.getComputedStyle(a,"")};var d=function(a){var b=[];if(a=a.parentNode){for(b[b.length]=a;a.nodeName.toLowerCase()!="html";){(a=a.parentNode)&&(b[b.length]=a)}}return b};var e=function(a){for(var b=[],c=0,d=a.length;c<d;c++){b.unshift(a[c])}return b};var f=function(a,b){var e=function(a){var b,c,d=cNum(),e=document.createElement("div"),f=document.getElementsByTagName("body")[0];e.id="dummyDiv"+d;d++;e.style.width=a;e.style.height=0;e.style.visibility="hidden";f.appendChild(e);b=document.getElementById(e.id);c=Math.abs(b.getBoundingClientRect().right-b.getBoundingClientRect().left);f.removeChild(b);return c};if(a.match(/^0(em|ex|px|cm|mm|in|pt|pc)?$/)){return 0}else if(a.match(/^(\-?[0-9\.]+)px$/)){return RegExp.$1*1}else if(a.match(/^(\-?[0-9\.]+)(cm|mm|in|pt|pc)$/)){return RegExp.$1*1>=0?e(a):e(RegExp.$1*-1+RegExp.$2)*-1}else if(a.match(/^(\-?[0-9\.]+)(em|ex)$/)){var f=RegExp.$1*1>=0?e(a)/e("1em"):e(a)/e("1em")*-1,g=d(b),h=document.getElementsByTagName("html")[0],i=[];g.unshift(b);g[g.length]=h;for(var j=0,k=g.length;j<k;j++){i[i.length]=c(g[j]).fontSize}for(j=0,k=i.length;j<k;j++){if(i[j].match(/^([0-9\.]+)%$/)){f*=RegExp.$1/100}else if(i[j].match(/^[0-9\.]+(em|ex)$/)){f*=e(i[j])/e("1em")}else if(i[j].match(/^smaller$/)){f/=1.2}else if(i[j].match(/^larger$/)){f*=1.2}else{i[j].match(/^([0-9\.]+)(px|cm|mm|in|pt|pc)$/)?f*=e(i[j]):i[j].match(/^xx\-small$/)?f*=e(c(h).fontSize)/1.728:i[j].match(/^x\-small$/)?f*=e(c(h).fontSize)/1.44:i[j].match(/^small$/)?f*=e(c(h).fontSize)/1.2:i[j].match(/^medium$/)?f*=e(c(h).fontSize):i[j].match(/^large$/)?f*=e(c(h).fontSize)*1.2:i[j].match(/^x\-large$/)?f*=e(c(h).fontSize)*1.44:i[j].match(/^xx\-large$/)?f*=e(c(h).fontSize)*1.728:i[j].match(/^([0-9\.]+)([a-z]+)/)&&(f*=e(i[j]));break}}return Math.round(f)}};var g=function(a){if(a.match(/(rgba?)\(\s*([0-9\.]+%?\s*,\s*[0-9\.]+%?\s*,\s*[0-9\.]+%?)\s*(,\s*[01]?[\.0-9]*)?\s*\)/)){for(var b=RegExp.$1,c=RegExp.$2.split(/,/),d=RegExp.$3||"",e=[],f=0,g=c.length;f<g;f++){c[f].match(/([0-9\.]+)%/)&&(c[f]=Math.round(RegExp.$1*255/100));e[e.length]=c[f]}return b+"("+e.join(",")+d+")"}};var h=function(a){for(var b=a.replace(/\s+/,"").split(/;/),c=[],d,e=0,f=b.length;e<f;e++){d=true;for(var g=e;g<f;g++){e!=g&&b[e]==b[g]&&(d=false)}d&&b[e]!=""&&(c[c.length]=b[e])}return c.join(";")+";"};var i=function(a){var b=a.match(/(\-)/)?a.replace(RegExp.$1,"\\-"):a;b+="\\s*:\\s*([0-9a-zA-Z\\s\\-\\+\\*\\&#\\.\\(\\)%\\,\\!\\\"\\'\\>\\<\\\\]+);?";var c=function(d){for(var e=[],f=d.cssRules||d.rules,g=0,h=f.length;g<h;g++){if(f[g].type){f[g].type==3&&(e=e.concat(c(f[g].styleSheet)));if(f[g].type==4){window.matchMedia=window.matchMedia||function(){return function(a){var b,c=document.getElementsByTagName("head")[0],d=document.getElementsByTagName("body")[0],e=document.createElement("style"),f=document.createElement("div"),g=cNum();f.id="dDiv"+g;g++;f.style.cssText="margin:0;border:0;padding:0;height:0;visibility:hidden;";c.appendChild(e);d.appendChild(f);e.setAttribute("media",a);e.innerHTML="#"+f.id+"{ width:42px; }";b=f.offsetWidth==42;d.removeChild(f);c.removeChild(e);return{matches:b,media:a}}}();window.matchMedia(f[g].media.mediaText).matches&&(e=e.concat(c(f[g])))}f[g].type==1&&f[g].style.cssText.match(b)&&(e[e.length]={sel:f[g].selectorText,prop:a,val:f[g].style.getPropertyPriority(a)?RegExp.$1+" !important":RegExp.$1});f[g].type==1&&f[g].selectorText.match(r)&&(q[q.length]={sel:f[g].selectorText,cText:f[g].style.cssText});if(f[g].type==1&&f[g].selectorText.match(t)){f[g].style.cssText.match(b)&&(s[s.length]={sel:f[g].selectorText,cText:f[g].style.getPropertyPriority(a)?RegExp.$1+" !important":RegExp.$1})}}else{var i=f[g].style.cssText||f[g].cssText;if(i){i.match(b)&&!f[g].selectorText.match(r)&&(e[e.length]={sel:f[g].selectorText,prop:a,val:RegExp.$1});f[g].selectorText.match(r)&&(q[q.length]={sel:f[g].selectorText,cText:i});if(f[g].selectorText.match(t)){i.match(b)&&(s[s.length]={sel:f[g].selectorText,cText:RegExp.$1})}}}}return e};if(document.styleSheets){for(var d=[],e=document.styleSheets,f=0,g=e.length;f<g;f++){if(isMSIE&&(ieVersion<9||document.documentMode<9)&&e[f].imports){for(var h=e[f].imports,i=0,j=h.length;i<j;i++){h[i]!=undefined&&(d=d.concat(c(h[i])))}}d=d.concat(c(e[f]))}}for(var k=document.getElementsByTagName("*"),l=cNum(),f=0,g=k.length;f<g;f++){if(k[f].style!=null&&k[f].style.cssText.match(b)){k[f].id==""&&(k[f].id="objId"+l,l++);d[d.length]={sel:"#"+k[f].id,prop:a,val:RegExp.$1.match(/important/)?RegExp.$1:RegExp.$1+" !important"}}}return d};var j=function(){for(var a=[],b=i("text-shadow"),c=/^(#[0-9a-fA-F]{3,6})\s+([0-9a-zA-Z\s\-\.\(\)%\,\!]+)$/,d=0,e=b.length;d<e;d++){a[a.length]={sel:b[d].sel,shadow:b[d].val.match(c)?RegExp.$2+" "+RegExp.$1:b[d].val}}return a};var k=function(b){var g=function(a){for(var b=a.childNodes,c=0,d=b.length;c<d;c++){if(b[c].nodeType==1){!b[c].hasChildNodes()?b[c].style.visibility="hidden":(b[c].style.color=a.style.color,g(b[c]))}}};var h=function(a,b){for(var c=b.childNodes,d=0,e=c.length;d<e;d++){if(c[d].hasChildNodes()){c[d].nodeName.toLowerCase()==a.tagName.toLowerCase()&&c[d].firstChild.nodeValue==a.firstChild.nodeValue?c[d].style.visibility="hidden":h(a,c[d])}}};var i=function(a){for(var b=true,c=d(a),e=0,f=c.length;e<f;e++){if(c[e].tagName.toLowerCase()=="span"&&c[e].className.match(/dummyShadow/)){b=false;break}}return b};if(b.shadow!="invalid"){for(var j=b.elm.childNodes,k=false,l=0;l<j.length;l++){if(j[l].nodeName.toLowerCase()=="span"&&j[l].className.match(/dummyShadow/)){if(j[l].className.match(/hasImp/)){k=true}else{b.elm.removeChild(j[l]);--l}}}if(k==false||b.hasImp==true){for(var m,n=d(b.elm),l=0,o=n.length;l<o;l++){m==null&&(c(n[l]).backgroundColor!="transparent"||c(n[l]).backgroundImage!="none")&&(m=n[l]);for(var p=n[l].childNodes,q=0,r=p.length;q<r;q++){p[q].nodeType==1&&p[q].nodeName.toLowerCase()=="span"&&p[q].className.match(/dummyShadow/)&&h(b.elm,document.getElementById(p[q].id))}}b.shadow!="none"&&b.shadow.length>1&&(c(b.elm).backgroundColor!="transparent"||c(b.elm).backgroundImage!="none")&&(b.shadow=e(b.shadow));if(b.shadow=="none"){for(var n=b.elm.parentNode.childNodes,l=0,o=n.length;l<o;l++){if(n[l].nodeName.toLowerCase()=="span"&&n[l].className=="dummyShadow"){c(b.elm).display=="inline-block"&&(b.elm.style.display="inline");c(b.elm).position=="relative"&&(b.elm.style.position="static");break}}if(!a&&b.elm.getAttribute("data-dynpseudo")!=null){var s=b.elm.getAttribute("data-dynpseudo");if(s.match(/(\|;\|default.+)$/)){s=s.replace(RegExp.$1,"")}s+="|;|"+escape("default"+"||none"+(b.hasImp?" !important":""));b.elm.setAttribute("data-dynpseudo",s)}}if(b.shadow!="none"&&j.length!=0&&i(b.elm)){for(var t=b.elm.cloneNode(true),n=t.childNodes,l=0,o=n.length;l<o;l++){n[l]!=null&&n[l].hasChildNodes()&&n[l].nodeName.toLowerCase()=="span"&&n[l].className.match(/dummyShadow/)&&t.removeChild(n[l])}var u=t.innerHTML;ieVersion==9&&(u=u.replace(/\n/," "));ieVersion==8&&(b.elm.innerHTML=b.elm.innerHTML);for(l=0,o=b.shadow.length;l<o;l++){var v=f(b.shadow[l].z,b.elm);var w=f(b.shadow[l].x,b.elm)-v+f(c(b.elm).paddingLeft,b.elm);c(b.elm).textAlign=="center"&&(w-=(f(c(b.elm).paddingLeft,b.elm)+f(c(b.elm).paddingRight,b.elm))/2);var x=f(b.shadow[l].y,b.elm)-v+f(c(b.elm).paddingTop,b.elm);if(ieVersion==7&&v==0){w>=0&&(w-=1);x>=0&&(x-=1)}var y=b.shadow[l].cProf||c(b.elm).color;var B=.6;b.shadow[l].cProf!=null&&b.shadow[l].cProf.match(/rgba\(\s*([0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+)\s*,\s*([01]?[\.0-9]*)\)/)&&(y="rgb("+RegExp.$1+")",B=RegExp.$2*1);var C=document.createElement("span");C.id="dummyShadow"+A;A++;C.className=b.hasImp==true?"dummyShadow hasImp":"dummyShadow";C.style.display="block";C.style.position="absolute";C.style.left=w+"px";C.style.top=x+"px";C.style.width="100%";C.style.color=y;C.style.filter="progid:DXImageTransform.Microsoft.Blur(PixelRadius="+v+", MakeShadow=false, ShadowOpacity="+B+")";C.style.zIndex=-(l+1);C.innerHTML=u;if(c(b.elm).display=="inline"){b.elm.style.display="inline-block"}if(!(c(b.elm).position=="absolute"||c(b.elm).position=="fixed")){b.elm.style.position="relative";ieVersion==7&&(b.elm.style.top=c(b.elm).paddingTop)}if(c(b.elm).backgroundColor!="transparent"||c(b.elm).backgroundImage!="none"){c(b.elm).zIndex!=("auto"||null)?C.style.zIndex=b.elm.style.zIndex:b.elm.style.zIndex=C.style.zIndex=-1;ieVersion==7&&(b.elm.style.zIndex=1,C.style.zIndex=-1)}if(m&&m.tagName.toLowerCase()!="body"){b.elm.style.zIndex=1;C.style.zIndex=-1}ieVersion==7&&c(b.elm).lineHeight.match(/^([0-9\.]+)(em|ex|px|cm|mm|in|pt|pc|%)?$/)&&(b.elm.style.minHeight=!RegExp.$2?f(RegExp.$1+"em",b.elm):RegExp.$2=="%"?f(RegExp.$1/100+"em",b.elm):f(RegExp.$1+RegExp.$2,b.elm));if(b.elm.getAttribute("data-pseudo")!=null){var D=unescape(b.elm.getAttribute("data-pseudo")).split("|;|");for(var q=0,r=D.length;q<r;q++){if(D[q].split("||")[0].match(/(::?(before|after))/)){var E="#"+C.id+RegExp.$1;var F=(D[q].split("||")[1].replace(/;$/,"")+";").replace(/background(\-[a-z]+?)?\s*:\s*.+?;/ig,"").replace(/color\s*:\s*.+?;/i,"");F.match(/border/i)&&(F+="border-color : transparent !important; border-image : none !important;");F.match(/content\s*:\s*url\(/i)&&(F+="visibility : hidden !important;");z.addCSS(E,F)}}}if(!a&&b.elm.getAttribute("data-dynpseudo")!=null){var s=b.elm.getAttribute("data-dynpseudo");if(s.match(/(\|;\|default.+)$/)){s=s.replace(RegExp.$1,"")}s+="|;|"+escape("default"+"||"+f(b.shadow[l].x,b.elm)+"px "+f(b.shadow[l].y,b.elm)+"px "+v+"px "+(b.shadow[l].cProf!=null&&b.shadow[l].cProf.match(/rgba/)?b.shadow[l].cProf:y));b.elm.setAttribute("data-dynpseudo",s)}b.elm.appendChild(C);g(document.getElementById(C.id))}}}}};var l=function(a){var b=document.querySelectorAll(a.sel);if(b.length>0){for(var c=0,d=b.length;c<d;c++){if(!b[c].getAttribute("data-pseudo")||b[c].getAttribute("data-pseudo")&&!unescape(b[c].getAttribute("data-pseudo")).match(/::?first\-(letter|line)/)){a.elm=b[c];k(a)}}}};var m=function(a){if(a.match(/none/)){return"none"}else{for(var b=[],c=a.match(/((rgba?\(\s*[0-9\.]+%?\s*,\s*[0-9\.]+%?\s*,\s*[0-9\.]+%?\s*(,\s*[01]?[\.0-9]*\s*)?\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)\s)?(\-?[0-9\.]+(em|ex|px|cm|mm|in|pt|pc)?\s*){2,3}(rgba?\(\s*[0-9\.]+%?\s*,\s*[0-9\.]+%?\s*,\s*[0-9\.]+%?\s*(,\s*[01]?[\.0-9]*\s*)?\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)?/g),d=0,e=c.length;d<e;d++){b[d]={x:"0",y:"0",z:"0",cProf:null};var f=c[d].match(/\-?[0-9\.]+(em|ex|px|cm|mm|in|pt|pc)?\s+\-?[0-9\.]+(em|ex|px|cm|mm|in|pt|pc)?(\s+[0-9\.]+(em|ex|px|cm|mm|in|pt|pc)?)?/);if(f=f[0].split(/\s+/),f[0].match(/^(\-?[0-9\.]+(em|ex|px|cm|mm|in|pt|pc)?)$/)&&f[1].match(/^(\-?[0-9\.]+(em|ex|px|cm|mm|in|pt|pc)?)$/)){f.length>=2&&(b[d].x=f[0],b[d].y=f[1]);f.length==3&&f[2].match(/^([0-9\.]+(em|ex|px|cm|mm|in|pt|pc)?)$/)&&(b[d].z=f[2]);c[d].match(/%/)&&(c[d]=g(c[d]));c[d].match(/^(rgba?\(\s*[0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+\s*(,\s*[01]?[\.0-9]*\s*)?\)|[a-zA-Z]+)/)?b[d].cProf=RegExp.$1:c[d].match(/\s(rgba?\(\s*[0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+\s*(,\s*[01]?[\.0-9]*\s*)?\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)$/)&&(b[d].cProf=RegExp.$1)}else{b="invalid";break}}return b}};var n=function(a,b,c){var d=function(a,b){var c=a.getAttribute(b)?a.getAttribute(b).replace(/;$/,"")+";triggerDynPseudoShadow(event, this);":"triggerDynPseudoShadow(event, this);";c&&a.setAttribute(b,h(c))};for(var e=a.sel.split(","),f=0,g=e.length;f<g;f++){e[f]=e[f].replace(/^\s+/,"").replace(/\s+$/,"");if(e[f].match(c)){for(var i=document.querySelectorAll(e[f].replace(RegExp.$1,"")),j=0,k=i.length;j<k;j++){var l=i[j].getAttribute(b)||"";l!=""&&l.match(/(\|;\|default.+)$/)&&(l=l.replace(RegExp.$1,""));l=l!=""?l+"|;|"+escape(e[f]+"||"+a.cText):escape(e[f]+"||"+a.cText);if(unescape(l).match(/:(focus|hover|active)/)){i[j].id==""&&(i[j].id="dynId"+v,v++);l+="|;|"+escape("default||none");unescape(l).match(/:focus/)&&(d(i[j],"onfocus"),d(i[j],"onblur"));unescape(l).match(/:hover/)&&(d(i[j],"onmouseover"),d(i[j],"onmouseout"));unescape(l).match(/:active/)&&(d(i[j],"onmousedown"),d(i[j],"onmouseup"),d(i[j],"onkeydown"),d(i[j],"onkeyup"))}i[j].setAttribute(b,l)}}}};var o=function(a){for(var b=[],c,d=0,e=a.length;d<e;d++){c=true;for(var f=d;f<e;f++){d!=f&&a[d].sel==a[f].sel&&!a[d].shadow.match(/important/)&&(c=false)}c&&(b[b.length]=a[d])}return b};var p=function(){try{if(document.documentElement.filters){var a,b,c=cNum(),d=document.createElement("div"),e=document.getElementsByTagName("body")[0];d.id="dummyDiv"+c;c++;d.style.width=0;d.style.height=0;d.style.visibility="hidden";d.style.filter="progid:DXImageTransform.Microsoft.Blur()";e.appendChild(d);a=document.getElementById(d.id);try{b=a.filters.item("DXImageTransform.Microsoft.Blur").Enabled}catch(f){b=false}e.removeChild(a);return b}else{return false}}catch(f){return false}};if(p()){var q=[],r=/(::?(before|after|first\-(letter|line)))/,s=[],t=/((:(focus|hover|active))+)/,u=o(b()),v=cNum();for(var w=0,x=q.length;w<x;w++){n(q[w],"data-pseudo",r)}for(var w=0,x=s.length;w<x;w++){n(s[w],"data-dynpseudo",t)}if(!a){var y=document.createElement("style");document.getElementsByTagName("head")[0].appendChild(y);var z=y.sheet||y.styleSheet;z.addCSS=function(a,b){if(b.match(/text\-shadow\s*:\s*((.+?)+?(!\s*important)?);/)){var c=RegExp.$1;c=c.match(/^(rgba?\(\s*[0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+\s*(,\s*[01]?[\.0-9]*\s*)?\)|[a-zA-Z]+)/)?RegExp.$1:c.match(/\s(rgba?\(\s*[0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+\s*(,\s*[01]?[\.0-9]*\s*)?\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)$/)&&RegExp.$1;c.match(/^(rgba?\(\s*[0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+\s*(,\s*[01]?[\.0-9]*\s*)?\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)(\s*!\s!important)?$/)&&(b+="color : "+c+";")}a.match(r)&&z.insertRule?z.insertRule(a+"{"+b+"}",z.cssRules.length):z.addRule&&z.addRule(a,b,z.rules.length)}}for(var A=cNum(),w=0,x=u.length;w<x;w++){for(var B=u[w].sel.split(/,/),C=/^\s*([a-zA-Z0-9#\.:_\-\s>\+~]+)\s*$/,D=0,E=B.length;D<E;D++){B[D].match(C)&&(B[D]=RegExp.$1);var F={sel:B[D],shadow:m(u[w].shadow),hasImp:u[w].shadow.match(/\s*\!\s*important/)?true:false};l(F)}}}}function triggerDynPseudoShadow(a,b){if(isMSIE){for(var a=a||window.event,c=a.clientX,d=a.clientY,e=b.getBoundingClientRect(),f=e.left<=c&&e.right>=c&&e.top<=d&&e.bottom>=d,g=b==document.activeElement,h=false,i=[],j=unescape(b.getAttribute("data-dynpseudo")).split("|;|"),k=0,l=j.length;k<l;k++){if(j[k].split("||")[0].match(/(((:(focus|hover|active))+)|default)/)){i[i.length]={dyn:RegExp.$1.replace(/^:/,"").split(":").sort().join("_"),shadow:j[k].split("||")[1]};RegExp.$1=="default"&&j[k].match(/important/)&&(h=true)}}var m=function(a){for(var c=false,d=0,e=a.length;d<e;d++){for(var f=0,g=i.length;f<g;f++){if(a[d]==i[f].dyn){textShadowForMSIE({sel:"#"+b.id,shadow:i[f].shadow});c=true;break}}if(c){break}}};if(!h){a.type=="mouseover"&&(g?m(["focus_hover","hover"]):m(["hover"]));a.type=="mouseout"&&(g?m(["focus","default"]):m(["default"]));a.type=="mousedown"&&(g?m(["active_focus_hover","active_hover","active_focus","active","focus_hover","hover","focus"]):m(["active_hover","active","hover"]));a.type=="mouseup"&&(f?m(["focus_hover","hover","focus"]):m(["focus"]));a.type=="keydown"&&(f?m(["active_focus_hover","active_hover","active_focus","active","focus_hover","hover","focus"]):m(["active_focus","active","focus"]));a.type=="keyup"&&(f?m(["focus_hover","hover","focus"]):m(["focus"]));a.type=="focus"&&(f?m(["active_focus_hover","active_hover","active_focus","active","focus_hover","hover","focus"]):m(["focus"]));a.type=="blur"&&m(["default"])}}}function addEvent(a,b,c){b=="DOMContentLoaded"?a.addEventListener?a.addEventListener(b,c,false):window.attachEvent?function(){try{document.documentElement.doScroll("left")}catch(b){setTimeout(arguments.callee,1);return}c.call(a,window.event)}():window.onload=function(a){c.call(window,a||window.event)}:a.addEventListener?a.addEventListener(b,c,false):a.attachEvent?a.attachEvent("on"+b,function(){c.call(a,window.event)}):a["on"+b]=function(b){c.call(a,b||window.event)}}var isMSIE=false;var ieVersion=function(a){return isMSIE&&navigator.userAgent.match(a)?RegExp.$1*1:null}(/MSIE\s([0-9]+[\.0-9]*)/);var cNum=function(a){return function(){return a++}}(0);(function(){document.querySelectorAll=document.querySelectorAll||function(){var a=function(a){return function(){return a++}}(0);return function(b){var c=function(a){var c,d,e={elm:"*",id:[],eClass:[],pseudo:[],attr:[],rDom:[]};a=a.match(/(([a-zA-Z\*]{1}[a-zA-Z0-9]*)|(#[a-zA-Z_]{1}[a-zA-Z0-9_\-]*)|(\.[a-zA-Z_]{1}[a-zA-Z0-9_\-]*)|(::?([a-z]{1}[a-z0-9\(\)\-]*))|(\[[a-zA-Z]{2,}.+?\]){1,})+/g);a[a.length-1].match(/^([a-zA-Z\*]{1}[a-zA-Z0-9]*)/)&&(e.elm=RegExp.$1);a[a.length-1].match(/#[a-zA-Z_]{1}[a-zA-Z0-9_\-]*/)&&(e.id=a[a.length-1].match(/#[a-zA-Z_]{1}[a-zA-Z0-9_\-]*/g));for(c=0,d=e.id.length;c<d;c++){e.id[c]=e.id[c].replace(/#/,"")}a[a.length-1].match(/\.[a-zA-Z_]{1}[a-zA-Z0-9_\-]*/)&&(e.eClass=a[a.length-1].match(/\.[a-zA-Z_]{1}[a-zA-Z0-9_\-]*/g));for(c=0,d=e.eClass.length;c<d;c++){e.eClass[c]=e.eClass[c].replace(/\./,"")}a[a.length-1].match(/::?[a-z]{1}[a-z0-9\(\)\-]*/)&&(e.pseudo=a[a.length-1].match(/::?[a-z]{1}[a-z0-9\(\)\-]*/g));for(c=0,d=e.pseudo.length;c<d;c++){e.pseudo[c]=e.pseudo[c].replace(/::?/,"")}a[a.length-1].match(/\[([a-zA-Z]{2,}.+)\]/)&&(e.attr=e.attr.concat(RegExp.$1.split("][")));for(c=0,d=e.attr.length;c<d;c++){e.attr[c]=e.attr[c].replace(/^\[|\]$/g,"")}if(e.id.length==0){for(var f=document.getElementsByTagName(e.elm),c=0,d=f.length;c<d;c++){if(e.eClass.length>0){for(var g,h=0,i=e.eClass.length;h<i;h++){g=false;if(f[c].className!=null){f[c].className.match(e.eClass[h])&&(g=true)}if(g==false){break}}g&&(e.id[e.id.length]=f[c].id)}else{e.id[e.id.length]=f[c].id}}}if(a.length>1){for(c=0,d=a.length-1;c<d;c++){b.match(RegExp(a[c]+"(.+?)"+a[c+1]))&&(e.rDom[e.rDom.length]={elm:a[c],type:RegExp.$1==" "?"descend":RegExp.$1.match(/\>/)?"child":RegExp.$1.match(/\+/)?"adjacent":RegExp.$1.match(/\~/)?"general":null})}}return e};var d=function(a){var b=function(a,b,c){var d=function(a){return a.nodeType==1?a:(a=a.previousSibling,a!=null?d(a):null)};var e=function(a){var b=[];for((a=a.previousSibling)&&a.nodeType==1&&(b[b.length]=a);a!=null;){(a=a.previousSibling)&&a.nodeType==1&&(b[b.length]=a)}return b};var f=function(a){var b=[];if(a=a.parentNode){for(b[b.length]=a;a.nodeName.toLowerCase()!="body";){(a=a.parentNode)&&(b[b.length]=a)}}return b};var g=false;if(c=="child"||c=="descend"){var h=a.parentNode;if(b.id==h.id){g=true}else if(c=="descend"){for(var i=f(a.parentNode),j=0,k=i.length;j<k;j++){if(b.id==i[j].id){g=true;break}}}}else if(c=="adjacent"||c=="general"){if(a.previousSibling!=null){var h=d(a.previousSibling);if(b.id==h.id){g=true}else if(c=="general"&&h.previousSibling!=null){for(var i=e(h),j=0,k=i.length;j<k;j++){if(b.id==i[j].id){g=true;break}}}}}return g};var e=function(a,b,c){var d=false;if(b.length==0){d=true}else{for(var e=0,f=b.length;e<f;e++){if(!c){if(a.tagName.toLowerCase()=="a"&&b[e]=="link"){d=true;break}}else if(c&&c.childNodes){if(b[e]=="first-child"&&c.childNodes[0]==a){d=true;break}}}}return d};var f=function(a,b){var c=true;if(b.length>0){for(var d=/^([a-zA-Z]+|data\-.+)([\~\|\^\$\*]?=?)["']?([a-zA-Z0-9_\-]+)["']?$/,e=[],f=0,g=b.length;f<g;f++){var h={attr:"",type:null,val:""};b[f].match(d)&&(RegExp.$1&&(h.attr=RegExp.$1),RegExp.$2==""&&RegExp.$3&&(h.attr=RegExp.$1+RegExp.$3),RegExp.$2!=""&&RegExp.$3&&(h.type=RegExp.$2,h.val=RegExp.$3));if(a.getAttributeNode(h.attr)){c=false;if(a.getAttributeNode(h.attr).nodeValue!=(null||"")){if(h.type==null&&h.val==""){c=true}else{for(var i=a.getAttributeNode(h.attr).nodeValue.split(" "),j=0,k=i.length;j<k;j++){if((h.type=="="||h.type=="|=")&&h.val==i[j]){c=true;break}else if(h.type=="~="&&h.val==i[j]){c=true;break}else if(h.type=="|="&&i[j].match("^"+h.val+"-")){c=true;break}else if(h.type=="^="&&i[j].match("^"+h.val)){c=true;break}else if(h.type=="$="&&i[j].match(h.val+"$")){c=true;break}else if(h.type=="*="&&i[j].match(h.val)){c=true;break}else{c=false}}}}if(c==false){break}}else{c=false;break}}}return c};var g=[];if(a.id.length>0){for(var h=0,i=a.id.length;h<i;h++){var j=document.getElementById(a.id[h]);if(j){if(a.rDom.length==0){e(j,a.pseudo,false)&&f(j,a.attr)&&(g[g.length]=j)}else if(a.rDom.length==1){var k=c(a.rDom[0].elm);if(k.id.length>0){for(var l=a.rDom[0].type,m=0,n=k.id.length;m<n;m++){var o=document.getElementById(k.id[m]);o&&b(j,o,l)&&e(j,a.pseudo,o)&&f(j,a.attr)&&(g[g.length]=j)}}}else if(a.rDom.length>1){for(var m=0,n=a.rDom.length-1;m<n;m++){var k=c(a.rDom[m+1].elm);if(k.id.length>0){k=d({elm:k.elm,id:k.id,eClass:k.eClass,pseudo:k.pseudo,attr:k.attr,rDom:[{elm:a.rDom[m].elm,type:a.rDom[m].type}]});var p=a.rDom[m+1].type;if(p){for(var q=0,r=k.length;q<r;q++){m==n-1&&b(j,k[q],p)&&e(j,a.pseudo,k[q])&&f(j,a.attr)&&(g[g.length]=j)}}}}}}}}return g};var e=[];try{for(var f=document.getElementsByTagName("*"),g=a(),h=0,i=f.length;h<i;h++){f[h].id==""&&(f[h].id="tmpId"+g,g++)}e=e.concat(d(c(b)));for(h=0,i=f.length;h<i;h++){f[h].id.match(/tmpId[0-9]+/)&&(f[h].id="")}}catch(j){}return e}}();document.querySelector=document.querySelector||function(){return function(a){return document.querySelectorAll(a).length>0?document.querySelectorAll(a)[0]:null}}()})();addEvent(document,"DOMContentLoaded",function(){ieVersion>=7&&ieVersion<=9&&textShadowForMSIE()});addEvent(window,"load",function(){var a={sel:"#someId",shadow:"green 2px 2px 2px !important"};var b=document.getElementById(a.sel.replace("#",""));b&&addEvent(b,"click",function(){if(ieVersion>=7&&ieVersion<=9){textShadowForMSIE(a)}else if(ieVersion>9||!isMSIE){a.shadow.match(/(\s*\!\s*important)/)?b.style.setProperty("text-shadow",a.shadow.replace(RegExp.$1,""),"important"):b.style.setProperty("text-shadow",a.shadow,"")}})})
+/*
+*  text-shadow for MSIE
+*  Copyright (c) 2011-2012 Kazz
+*  http://asamuzak.jp
+*  Dual licensed under MIT or GPL
+*  http://asamuzak.jp/license
+*/
+
+var isMSIE = /*@cc_on!@*/false;
+var ieVersion = (function(reg) { return isMSIE && navigator.userAgent.match(reg) ? RegExp.$1 * 1 : null; })(/MSIE\s([0-9]+[\.0-9]*)/);
+var cNum = (function(n) { return function() { return n++; }})(0);
+
+function textShadowForMSIE(eObj) {
+  var ieShadowSettings = function() {
+    if(isMSIE) {
+      var arr = [];
+      if(eObj) {
+        arr[arr.length] = eObj;
+        return arr;
+      }
+      else {
+        arr = [
+          // Write your text-shadow settings here, like below.
+          { sel : 'h2', shadow : '0px 1px 0px #FFFFFF' },
+          { sel : 'h3', shadow : '0px 1px 2px #222222' },
+          { sel : 'h3.notify', shadow : '0px 1px 0em #FFFFFF' },
+          { sel : 'h4', shadow: '0px 1px 2px #202020' }
+
+        ];
+        for(var sReg = /text\-shadow\s*:\s*([0-9a-zA-Z\s\-\+\*\&#\.\(\)%\,\!\"\\'\>\<\\]+);?/, aTag = document.getElementsByTagName('*'), oId = cNum(), i = 0, l = aTag.length; i < l; i++) {
+          if(aTag[i].style != null && aTag[i].style.cssText.match(sReg)) {
+            aTag[i].id == '' && (aTag[i].id = 'objId' + oId, oId++);
+            arr[arr.length] = { sel : '#' + aTag[i].id, shadow : RegExp.$1 };
+          }
+        }
+        return cssShadowValues().concat(arr);
+      }
+    }
+    else {
+      return null;
+    }
+  };
+  /*  general functions  */
+  var getCompStyle = function(elm, pseudo) {
+    return (isMSIE && (ieVersion < 9 || document.documentMode < 9)) ? elm.currentStyle : pseudo != null ? document.defaultView.getComputedStyle(elm, pseudo) : document.defaultView.getComputedStyle(elm, '');
+  };
+  var getAncestObj = function(pElm) {
+    var arr = [];
+    if(pElm = pElm.parentNode) {
+      for(arr[arr.length] = pElm; pElm.nodeName.toLowerCase() != 'html';) {
+        (pElm = pElm.parentNode) && (arr[arr.length] = pElm);
+      }
+    }
+    return arr;
+  };
+  var revArr = function(arr) {
+    for(var rArr = [], i = 0, l = arr.length; i < l; i++) {
+      rArr.unshift(arr[i]);
+    }
+    return rArr;
+  };
+  var convUnitToPx = function(sUnit, obj) {
+    var getUnitRatio = function(sUnit) {
+      var elm, val, dId = cNum(), dBox = document.createElement('div'), dBody = document.getElementsByTagName('body')[0];
+      dBox.id = 'dummyDiv' + dId;  dId++;
+      dBox.style.width = sUnit;
+      dBox.style.height = 0;
+      dBox.style.visibility = 'hidden';
+      dBody.appendChild(dBox);
+      elm = document.getElementById(dBox.id);
+      val = Math.abs(elm.getBoundingClientRect().right - elm.getBoundingClientRect().left);
+      dBody.removeChild(elm);
+      return val;
+    };
+    if(sUnit.match(/^0(em|ex|px|cm|mm|in|pt|pc)?$/)) {
+      return 0;
+    }
+    else if(sUnit.match(/^(\-?[0-9\.]+)px$/)) {
+      return RegExp.$1 * 1;
+    }
+    else if(sUnit.match(/^(\-?[0-9\.]+)(cm|mm|in|pt|pc)$/)) {
+      return RegExp.$1 * 1 >= 0 ? getUnitRatio(sUnit) : getUnitRatio((RegExp.$1 * -1) + RegExp.$2) * -1;
+    }
+    else if(sUnit.match(/^(\-?[0-9\.]+)(em|ex)$/)) {
+      var val = RegExp.$1 * 1 >= 0 ? (getUnitRatio(sUnit) / getUnitRatio('1em')) : (getUnitRatio(sUnit) / getUnitRatio('1em') * -1), arr = getAncestObj(obj), dRoot = document.getElementsByTagName('html')[0], fSize = [];
+      arr.unshift(obj);  arr[arr.length] = dRoot;
+      for(var i = 0, l = arr.length; i < l; i++) {
+        fSize[fSize.length] = getCompStyle(arr[i]).fontSize;
+      }
+      for(i = 0, l = fSize.length; i < l; i++) {
+        if(fSize[i].match(/^([0-9\.]+)%$/)) {
+          val *= (RegExp.$1 / 100);
+        }
+        else if(fSize[i].match(/^[0-9\.]+(em|ex)$/)) {
+          val *= (getUnitRatio(fSize[i]) / getUnitRatio('1em'));
+        }
+        else if(fSize[i].match(/^smaller$/)) {
+          val /= 1.2;
+        }
+        else if(fSize[i].match(/^larger$/)) {
+          val *= 1.2;
+        }
+        else {
+          fSize[i].match(/^([0-9\.]+)(px|cm|mm|in|pt|pc)$/) ? val *= getUnitRatio(fSize[i]) :
+          fSize[i].match(/^xx\-small$/) ? val *= getUnitRatio(getCompStyle(dRoot).fontSize) / 1.728 :
+          fSize[i].match(/^x\-small$/) ? val *= getUnitRatio(getCompStyle(dRoot).fontSize) / 1.44 :
+          fSize[i].match(/^small$/) ? val *= getUnitRatio(getCompStyle(dRoot).fontSize) / 1.2 :
+          fSize[i].match(/^medium$/) ? val *= getUnitRatio(getCompStyle(dRoot).fontSize) :
+          fSize[i].match(/^large$/) ? val *= getUnitRatio(getCompStyle(dRoot).fontSize) * 1.2 :
+          fSize[i].match(/^x\-large$/) ? val *= getUnitRatio(getCompStyle(dRoot).fontSize) * 1.44 :
+          fSize[i].match(/^xx\-large$/) ? val *= getUnitRatio(getCompStyle(dRoot).fontSize) * 1.728 :
+          fSize[i].match(/^([0-9\.]+)([a-z]+)/) && (val *= getUnitRatio(fSize[i]));
+          break;
+        }
+      }
+      return Math.round(val);
+    }
+  };
+  var convPercentTo256 = function(cProf) {
+    if(cProf.match(/(rgba?)\(\s*([0-9\.]+%?\s*,\s*[0-9\.]+%?\s*,\s*[0-9\.]+%?)\s*(,\s*[01]?[\.0-9]*)?\s*\)/)) {
+      for(var cType = RegExp.$1, arr = RegExp.$2.split(/,/), aCh = (RegExp.$3 || ''), rgbArr = [], i = 0, l = arr.length; i < l; i++) {
+        arr[i].match(/([0-9\.]+)%/) && (arr[i] = Math.round(RegExp.$1 * 255 / 100));
+        rgbArr[rgbArr.length] = arr[i];
+      }
+      return cType + '(' + rgbArr.join(',') + aCh + ')';
+    }
+  };
+  var removeDupFunc = function(fStr) {
+    for(var arr = fStr.replace(/\s+/, '').split(/;/), fArr = [], bool, i = 0, l = arr.length; i < l; i++) {
+      bool = true;
+      for(var j = i; j < l; j++) {
+        i != j && arr[i] == arr[j] && (bool = false);
+      }
+      bool && arr[i] != '' && (fArr[fArr.length] = arr[i]);
+    }
+    return fArr.join(';') + ';';
+  };
+  /*  end general functions  */
+  var getCssValues = function(prop) {
+    var sReg = prop.match(/(\-)/) ? prop.replace(RegExp.$1, '\\\-') : prop;
+    sReg += '\\s*:\\s*([0-9a-zA-Z\\s\\-\\+\\*\\\&#\\.\\(\\)%\\,\\!\\"\\\'\\>\\<\\\\]+);?';
+    var getCssRules = function(sSheet) {
+      for(var arr = [], sRules = sSheet.cssRules || sSheet.rules, i = 0, l = sRules.length; i < l; i++) {
+        if(sRules[i].type) {
+          sRules[i].type == 3 && (arr = arr.concat(getCssRules(sRules[i].styleSheet)));
+          if(sRules[i].type == 4) {
+            /*
+            *  matchMedia() polyfill - test whether a CSS media type or media query applies
+            *  authors: Scott Jehl, Paul Irish, Nicholas Zakas
+            *  Copyright (c) 2011 Scott, Paul and Nicholas.
+            *  Dual MIT/BSD license
+            *  Original Source matchMedia.js https://github.com/paulirish/matchMedia.js
+            *  Revised by Kazz http://asamuzak.jp
+            */
+            window.matchMedia = window.matchMedia || (function() {
+              return function(q) {
+                var bool,
+                  dHead = document.getElementsByTagName('head')[0],
+                  dBody = document.getElementsByTagName('body')[0],
+                  dStyle = document.createElement('style'),
+                  dDiv = document.createElement('div'),
+                  dId = cNum();
+                dDiv.id = 'dDiv' + dId;  dId++;
+                dDiv.style.cssText = 'margin:0;border:0;padding:0;height:0;visibility:hidden;';
+                dHead.appendChild(dStyle);
+                dBody.appendChild(dDiv);
+                dStyle.setAttribute('media', q);
+                dStyle.innerHTML = '#' + dDiv.id + '{ width:42px; }';
+                bool = dDiv.offsetWidth == 42;
+                dBody.removeChild(dDiv);
+                dHead.removeChild(dStyle);
+                return { matches: bool, media: q };
+              };
+            })();
+            /*  end matchMedia.js  */
+            window.matchMedia(sRules[i].media.mediaText).matches && (arr = arr.concat(getCssRules(sRules[i])));
+          }
+          sRules[i].type == 1 && sRules[i].style.cssText.match(sReg) && (arr[arr.length] = { sel : sRules[i].selectorText, prop : prop, val : sRules[i].style.getPropertyPriority(prop) ? RegExp.$1 + ' !important' : RegExp.$1 });
+          sRules[i].type == 1 && sRules[i].selectorText.match(pseudoReg) && (pArr[pArr.length] = { sel : sRules[i].selectorText, cText : sRules[i].style.cssText });
+          if(sRules[i].type == 1 && sRules[i].selectorText.match(dynPseudoReg)) {
+            sRules[i].style.cssText.match(sReg) && (dArr[dArr.length] = { sel : sRules[i].selectorText, cText : sRules[i].style.getPropertyPriority(prop) ? RegExp.$1 + ' !important' : RegExp.$1 });
+          }
+        }
+        else {
+          var sText = sRules[i].style.cssText || sRules[i].cssText;
+          if(sText) {
+            sText.match(sReg) && !sRules[i].selectorText.match(pseudoReg) && (arr[arr.length] = { sel : sRules[i].selectorText, prop : prop, val : RegExp.$1 });
+            sRules[i].selectorText.match(pseudoReg) && (pArr[pArr.length] = { sel : sRules[i].selectorText, cText : sText });
+            if(sRules[i].selectorText.match(dynPseudoReg)) {
+              sText.match(sReg) && (dArr[dArr.length] = { sel : sRules[i].selectorText, cText : RegExp.$1 });
+            }
+          }
+        }
+      }
+      return arr;
+    };
+    if(document.styleSheets) {
+      for(var arr = [], sArr = document.styleSheets, i = 0, l = sArr.length; i < l; i++) {
+        if(isMSIE && (ieVersion < 9 || document.documentMode < 9) && sArr[i].imports) {
+          for(var iArr = sArr[i].imports, j = 0, k = iArr.length; j < k; j++) {
+            iArr[j] != undefined && (arr = arr.concat(getCssRules(iArr[j])));
+          }
+        }
+        arr = arr.concat(getCssRules(sArr[i]));
+      }
+    }
+    for(var aTag = document.getElementsByTagName('*'), oId = cNum(), i = 0, l = aTag.length; i < l; i++) {
+      if(aTag[i].style != null && aTag[i].style.cssText.match(sReg)) {
+        aTag[i].id == '' && (aTag[i].id = 'objId' + oId, oId++);
+        arr[arr.length] = { sel : '#' + aTag[i].id, prop : prop, val : RegExp.$1.match(/important/) ? RegExp.$1 : RegExp.$1 + ' !important' };
+      }
+    }
+    return arr;
+  };
+  var cssShadowValues = function() {
+    for(var arr = [], sArr = getCssValues('text-shadow'), revReg = /^(#[0-9a-fA-F]{3,6})\s+([0-9a-zA-Z\s\-\.\(\)%\,\!]+)$/, i = 0, l = sArr.length; i < l; i++) {
+      arr[arr.length] = { sel : sArr[i].sel, shadow : sArr[i].val.match(revReg) ? RegExp.$2 + ' ' + RegExp.$1 : sArr[i].val };
+    }
+    return arr;
+  };
+  var setShadow = function(tObj) {
+    var setShadowNodeColor = function(elm) {
+      for(var arr = elm.childNodes, i = 0, l = arr.length; i < l; i++) {
+        if(arr[i].nodeType == 1) {
+          !arr[i].hasChildNodes() ? arr[i].style.visibility = 'hidden' : (arr[i].style.color = elm.style.color, setShadowNodeColor(arr[i]));
+        }
+      }
+    };
+    var hideAncestShadow = function(oElm, pElm) {
+      for(var arr = pElm.childNodes, i = 0, l = arr.length; i < l; i++) {
+        if(arr[i].hasChildNodes()) {
+          arr[i].nodeName.toLowerCase() == oElm.tagName.toLowerCase() && arr[i].firstChild.nodeValue == oElm.firstChild.nodeValue ? arr[i].style.visibility = 'hidden' : hideAncestShadow(oElm, arr[i]);
+        }
+      }
+    };
+    var boolShadowChild = function(elm) {
+      for(var bool = true, arr = getAncestObj(elm), i = 0, l = arr.length; i < l; i++) {
+        if(arr[i].tagName.toLowerCase() == 'span' && arr[i].className.match(/dummyShadow/)) {
+          bool = false;
+          break;
+        }
+      }
+      return bool;
+    };
+    if(tObj.shadow != 'invalid') {
+      for(var nArr = tObj.elm.childNodes, bool = false, i = 0; i < nArr.length; i++) {
+        if(nArr[i].nodeName.toLowerCase() == 'span' && nArr[i].className.match(/dummyShadow/)) {
+          if(nArr[i].className.match(/hasImp/)) {
+            bool = true;
+          }
+          else {
+            tObj.elm.removeChild(nArr[i]);
+            --i;
+          }
+        }
+      }
+      if(bool == false || tObj.hasImp == true) {
+        for(var aBg, arr = getAncestObj(tObj.elm), i = 0, l = arr.length; i < l; i++) {
+          aBg == null && (getCompStyle(arr[i]).backgroundColor != 'transparent' || getCompStyle(arr[i]).backgroundImage != 'none') && (aBg = arr[i]);
+          for(var cArr = arr[i].childNodes, j = 0, k = cArr.length; j < k; j++) {
+            cArr[j].nodeType == 1 && cArr[j].nodeName.toLowerCase() == 'span' && cArr[j].className.match(/dummyShadow/) && hideAncestShadow(tObj.elm, document.getElementById(cArr[j].id));
+          }
+        }
+        tObj.shadow != 'none' && tObj.shadow.length > 1 && (getCompStyle(tObj.elm).backgroundColor != 'transparent' || getCompStyle(tObj.elm).backgroundImage != 'none') && (tObj.shadow = revArr(tObj.shadow));
+        if(tObj.shadow == 'none') {
+          for(var arr = tObj.elm.parentNode.childNodes, i = 0, l = arr.length; i < l; i++) {
+            if(arr[i].nodeName.toLowerCase() == 'span' && arr[i].className == 'dummyShadow') {
+              getCompStyle(tObj.elm).display == 'inline-block' && (tObj.elm.style.display = 'inline');
+              getCompStyle(tObj.elm).position == 'relative' && (tObj.elm.style.position = 'static');
+              break;
+            }
+          }
+          if(!eObj && tObj.elm.getAttribute('data-dynpseudo') != null) {
+            var dAttr = tObj.elm.getAttribute('data-dynpseudo');
+            if(dAttr.match(/(\|;\|default.+)$/)) {
+              dAttr = dAttr.replace(RegExp.$1, '');
+            }
+            dAttr += ('|;|' + escape('default' + '||none' + (tObj.hasImp ? ' !important' : '')));
+            tObj.elm.setAttribute('data-dynpseudo', dAttr);
+          }
+        }
+        if(tObj.shadow != 'none' && nArr.length != 0 && boolShadowChild(tObj.elm)) {
+          for(var clNode = tObj.elm.cloneNode(true), arr = clNode.childNodes, i = 0, l = arr.length; i < l; i++) {
+            arr[i] != null && arr[i].hasChildNodes() && arr[i].nodeName.toLowerCase() == 'span' && arr[i].className.match(/dummyShadow/) && clNode.removeChild(arr[i]);
+          }
+          var sNode = clNode.innerHTML;
+          ieVersion == 9 && (sNode = sNode.replace(/\n/, ' '));
+          ieVersion == 8 && (tObj.elm.innerHTML = tObj.elm.innerHTML);
+          for(i = 0, l = tObj.shadow.length; i < l; i++) {
+            var pxRad = convUnitToPx(tObj.shadow[i].z, tObj.elm);
+            var xPos = convUnitToPx(tObj.shadow[i].x, tObj.elm) - pxRad + convUnitToPx(getCompStyle(tObj.elm).paddingLeft, tObj.elm);
+            getCompStyle(tObj.elm).textAlign == 'center' && (xPos -= ((convUnitToPx(getCompStyle(tObj.elm).paddingLeft, tObj.elm) + convUnitToPx(getCompStyle(tObj.elm).paddingRight, tObj.elm)) / 2));
+            var yPos = convUnitToPx(tObj.shadow[i].y, tObj.elm) - pxRad + convUnitToPx(getCompStyle(tObj.elm).paddingTop, tObj.elm);
+            if(ieVersion == 7 && pxRad == 0) {
+              xPos >= 0 && (xPos -= 1);
+              yPos >= 0 && (yPos -= 1);
+            }
+            var sColor = tObj.shadow[i].cProf || getCompStyle(tObj.elm).color;
+            var sOpacity = 0.6;  // デフォルトの透過度
+            tObj.shadow[i].cProf != null && tObj.shadow[i].cProf.match(/rgba\(\s*([0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+)\s*,\s*([01]?[\.0-9]*)\)/) && (sColor = 'rgb(' + RegExp.$1 + ')', sOpacity = (RegExp.$2 * 1));
+            var sBox = document.createElement('span');
+            sBox.id = 'dummyShadow' + sId;  sId++;
+            sBox.className = (tObj.hasImp == true) ? 'dummyShadow hasImp' : 'dummyShadow';
+            sBox.style.display = 'block';
+            sBox.style.position = 'absolute';
+            sBox.style.left = xPos + 'px';
+            sBox.style.top = yPos + 'px';
+            sBox.style.width = '100%';
+            sBox.style.color = sColor;
+            sBox.style.filter = 'progid:DXImageTransform.Microsoft.Blur(PixelRadius=' + pxRad + ', MakeShadow=false, ShadowOpacity=' + sOpacity + ')';
+            sBox.style.zIndex = -(i + 1);
+            sBox.innerHTML = sNode;
+            if(getCompStyle(tObj.elm).display == 'inline') {
+              tObj.elm.style.display = 'inline-block';
+            }
+            if(!(getCompStyle(tObj.elm).position == 'absolute' || getCompStyle(tObj.elm).position == 'fixed')) {
+              tObj.elm.style.position = 'relative';
+              ieVersion == 7 && (tObj.elm.style.top = getCompStyle(tObj.elm).paddingTop);
+            }
+            if(getCompStyle(tObj.elm).backgroundColor != 'transparent' || getCompStyle(tObj.elm).backgroundImage != 'none') {
+              getCompStyle(tObj.elm).zIndex != ('auto' || null) ? (sBox.style.zIndex = tObj.elm.style.zIndex) : (tObj.elm.style.zIndex = sBox.style.zIndex = -1);
+              ieVersion == 7 && (tObj.elm.style.zIndex = 1, sBox.style.zIndex = -1);
+            }
+            if(aBg && aBg.tagName.toLowerCase() != 'body') {
+              tObj.elm.style.zIndex = 1; sBox.style.zIndex = -1;
+            }
+            ieVersion == 7 && getCompStyle(tObj.elm).lineHeight.match(/^([0-9\.]+)(em|ex|px|cm|mm|in|pt|pc|%)?$/) && (tObj.elm.style.minHeight = !RegExp.$2 ? convUnitToPx(RegExp.$1 + 'em', tObj.elm) : RegExp.$2 == '%' ? convUnitToPx((RegExp.$1 / 100) + 'em', tObj.elm) : convUnitToPx(RegExp.$1 + RegExp.$2, tObj.elm));
+            if(tObj.elm.getAttribute('data-pseudo') != null) {
+              var cloneCSS = unescape(tObj.elm.getAttribute('data-pseudo')).split('|;|');
+              for(var j = 0, k = cloneCSS.length; j < k; j++) {
+                if(cloneCSS[j].split('||')[0].match(/(::?(before|after))/)) {
+                  var cSel = '#' + sBox.id + RegExp.$1;
+                  var cText = (cloneCSS[j].split('||')[1].replace(/;$/, '') + ';').replace(/background(\-[a-z]+?)?\s*:\s*.+?;/ig, '').replace(/color\s*:\s*.+?;/i, '');
+                  cText.match(/border/i) && (cText += 'border-color : transparent !important; border-image : none !important;');
+                  cText.match(/content\s*:\s*url\(/i) && (cText += 'visibility : hidden !important;');
+                  sheet.addCSS(cSel, cText);
+                }
+              }
+            }
+            if(!eObj && tObj.elm.getAttribute('data-dynpseudo') != null) {
+              var dAttr = tObj.elm.getAttribute('data-dynpseudo');
+              if(dAttr.match(/(\|;\|default.+)$/)) {
+                dAttr = dAttr.replace(RegExp.$1, '');
+              }
+              dAttr += ('|;|' + escape('default' + '||' + convUnitToPx(tObj.shadow[i].x, tObj.elm) + 'px ' + convUnitToPx(tObj.shadow[i].y, tObj.elm) + 'px ' + pxRad + 'px ' + (tObj.shadow[i].cProf != null && tObj.shadow[i].cProf.match(/rgba/) ? tObj.shadow[i].cProf : sColor)));
+              tObj.elm.setAttribute('data-dynpseudo', dAttr);
+            }
+            tObj.elm.appendChild(sBox);
+            setShadowNodeColor(document.getElementById(sBox.id));
+          }
+        }
+      }
+    }
+  };
+  var getTargetObj = function(sObj) {
+    var arr = document.querySelectorAll(sObj.sel);
+    if(arr.length > 0) {
+      for(var i = 0, l = arr.length; i < l; i++) {
+        if(!arr[i].getAttribute('data-pseudo') || (arr[i].getAttribute('data-pseudo') && !unescape(arr[i].getAttribute('data-pseudo')).match(/::?first\-(letter|line)/))) {
+          sObj.elm = arr[i];
+          setShadow(sObj);
+        }
+      }
+    }
+  };
+  var getShadowValue = function(shadow) {
+    if(shadow.match(/none/)) {
+      return 'none';
+    }
+    else {
+      for(var val = [], arr = shadow.match(/((rgba?\(\s*[0-9\.]+%?\s*,\s*[0-9\.]+%?\s*,\s*[0-9\.]+%?\s*(,\s*[01]?[\.0-9]*\s*)?\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)\s)?(\-?[0-9\.]+(em|ex|px|cm|mm|in|pt|pc)?\s*){2,3}(rgba?\(\s*[0-9\.]+%?\s*,\s*[0-9\.]+%?\s*,\s*[0-9\.]+%?\s*(,\s*[01]?[\.0-9]*\s*)?\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)?/g), i = 0, l = arr.length; i < l; i++) {
+        val[i] = { x : '0', y : '0', z : '0', cProf : null };
+        var uArr = arr[i].match(/\-?[0-9\.]+(em|ex|px|cm|mm|in|pt|pc)?\s+\-?[0-9\.]+(em|ex|px|cm|mm|in|pt|pc)?(\s+[0-9\.]+(em|ex|px|cm|mm|in|pt|pc)?)?/);
+        if(uArr = uArr[0].split(/\s+/), uArr[0].match(/^(\-?[0-9\.]+(em|ex|px|cm|mm|in|pt|pc)?)$/) && uArr[1].match(/^(\-?[0-9\.]+(em|ex|px|cm|mm|in|pt|pc)?)$/)) {
+          uArr.length >= 2 && (val[i].x = uArr[0], val[i].y = uArr[1]);
+          uArr.length == 3 && uArr[2].match(/^([0-9\.]+(em|ex|px|cm|mm|in|pt|pc)?)$/) && (val[i].z = uArr[2]);
+          arr[i].match(/%/) && (arr[i] = convPercentTo256(arr[i]));
+          arr[i].match(/^(rgba?\(\s*[0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+\s*(,\s*[01]?[\.0-9]*\s*)?\)|[a-zA-Z]+)/) ? (val[i].cProf = RegExp.$1) :
+          arr[i].match(/\s(rgba?\(\s*[0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+\s*(,\s*[01]?[\.0-9]*\s*)?\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)$/) && (val[i].cProf = RegExp.$1);
+        }
+        else {
+          val = 'invalid';
+          break;
+        }
+      }
+      return val;
+    }
+  };
+  var setDataAttr = function(obj, dataAttr, objReg) {
+    var setDynAttr = function(obj, attr) {
+      var tAttr = obj.getAttribute(attr) ? obj.getAttribute(attr).replace(/;$/, '') + ';triggerDynPseudoShadow(event, this);' : 'triggerDynPseudoShadow(event, this);';
+      tAttr && obj.setAttribute(attr, removeDupFunc(tAttr));
+    };
+    for(var arr = obj.sel.split(','), i = 0, l = arr.length; i < l; i++) {
+      arr[i] = arr[i].replace(/^\s+/, '').replace(/\s+$/, '');
+      if(arr[i].match(objReg)) {
+        for(var qArr = document.querySelectorAll(arr[i].replace(RegExp.$1, '')), j = 0, k = qArr.length; j < k; j++) {
+          var dAttr = qArr[j].getAttribute(dataAttr) || '';
+          dAttr != '' && dAttr.match(/(\|;\|default.+)$/) && (dAttr = dAttr.replace(RegExp.$1, ''));
+          dAttr = dAttr != '' ? dAttr + '|;|' + escape(arr[i] + '||' + obj.cText) : escape(arr[i] + '||' + obj.cText);
+          if(unescape(dAttr).match(/:(focus|hover|active)/)) {
+            qArr[j].id == '' && (qArr[j].id = 'dynId' + gId, gId++);
+            dAttr += ('|;|' + escape('default||none'));
+            unescape(dAttr).match(/:focus/) && (setDynAttr(qArr[j], 'onfocus'), setDynAttr(qArr[j], 'onblur'));
+            unescape(dAttr).match(/:hover/) && (setDynAttr(qArr[j], 'onmouseover'), setDynAttr(qArr[j], 'onmouseout'));
+            unescape(dAttr).match(/:active/) && (setDynAttr(qArr[j], 'onmousedown'), setDynAttr(qArr[j], 'onmouseup'), setDynAttr(qArr[j], 'onkeydown'), setDynAttr(qArr[j], 'onkeyup'));
+          }
+          qArr[j].setAttribute(dataAttr, dAttr);
+        }
+      }
+    }
+  };
+  var cascadeSel = function(arr) {
+    for(var sArr = [], bool, i = 0, l = arr.length; i < l; i++) {
+      bool = true;
+      for(var j = i; j < l; j++) {
+        i != j && arr[i].sel == arr[j].sel && !arr[i].shadow.match(/important/) && (bool = false);
+      }
+      bool && (sArr[sArr.length] = arr[i]);
+    }
+    return sArr;
+  };
+  var filterEnabled = function() {
+    try {
+      if(document.documentElement.filters) {
+        var elm, bool, dId = cNum(), dBox = document.createElement('div'), dBody = document.getElementsByTagName('body')[0];
+        dBox.id = 'dummyDiv' + dId;  dId++;
+        dBox.style.width = 0;
+        dBox.style.height = 0;
+        dBox.style.visibility = 'hidden';
+        dBox.style.filter = 'progid:DXImageTransform.Microsoft.Blur()';
+        dBody.appendChild(dBox);
+        elm = document.getElementById(dBox.id);
+        try {
+          bool = elm.filters.item('DXImageTransform.Microsoft.Blur').Enabled;
+        }
+        catch(e) {
+          bool = false;
+        }
+        dBody.removeChild(elm);
+        return bool;
+      }
+      else {
+        return false;
+      }
+    }
+    catch(e) {
+      return false;
+    }
+  };
+  if(filterEnabled()) {
+    var pArr = [], pseudoReg = /(::?(before|after|first\-(letter|line)))/, dArr = [], dynPseudoReg = /((:(focus|hover|active))+)/, arr = cascadeSel(ieShadowSettings()), gId = cNum();
+    for(var i = 0, l = pArr.length; i < l; i++) {
+      setDataAttr(pArr[i], 'data-pseudo', pseudoReg);
+    }
+    for(var i = 0, l = dArr.length; i < l; i++) {
+      setDataAttr(dArr[i], 'data-dynpseudo', dynPseudoReg);
+    }
+    if(!eObj) {
+      var style = document.createElement('style');
+      document.getElementsByTagName('head')[0].appendChild(style);
+      var sheet = style.sheet || style.styleSheet;
+      sheet.addCSS = function(sel, cText) {
+        if(cText.match(/text\-shadow\s*:\s*((.+?)+?(!\s*important)?);/)) {
+          var cProf = RegExp.$1;
+          cProf = cProf.match(/^(rgba?\(\s*[0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+\s*(,\s*[01]?[\.0-9]*\s*)?\)|[a-zA-Z]+)/) ? RegExp.$1 : (cProf.match(/\s(rgba?\(\s*[0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+\s*(,\s*[01]?[\.0-9]*\s*)?\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)$/) && RegExp.$1);
+          cProf.match(/^(rgba?\(\s*[0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+\s*(,\s*[01]?[\.0-9]*\s*)?\)|#[0-9a-fA-F]{3,6}|[a-zA-Z]+)(\s*!\s!important)?$/) && (cText += 'color : ' + cProf + ';');
+        }
+        sel.match(pseudoReg) && sheet.insertRule ? sheet.insertRule(sel + '{' + cText + '}', sheet.cssRules.length) : sheet.addRule && sheet.addRule(sel, cText, sheet.rules.length);
+      };
+    }
+    for(var sId = cNum(), i = 0, l = arr.length; i < l; i++) {
+      for(var sSel = arr[i].sel.split(/,/), sReg = /^\s*([a-zA-Z0-9#\.:_\-\s>\+~]+)\s*$/, j = 0, k = sSel.length; j < k; j++) {
+        sSel[j].match(sReg) && (sSel[j] = RegExp.$1);
+        var sObj = { sel : sSel[j], shadow : getShadowValue(arr[i].shadow), hasImp : arr[i].shadow.match(/\s*\!\s*important/) ? true : false };
+        getTargetObj(sObj);
+      }
+    }
+  }
+}
+
+function triggerDynPseudoShadow(evt, obj) {
+  if(isMSIE) {
+    for(var evt = (evt || window.event), x = evt.clientX, y = evt.clientY, cRect = obj.getBoundingClientRect(), isHover = (cRect.left <= x && cRect.right >= x && cRect.top <= y && cRect.bottom >= y), isActive = (obj == document.activeElement), hasImp = false, dynCSS = [], dynAttr = unescape(obj.getAttribute('data-dynpseudo')).split('|;|'), i = 0, l = dynAttr.length; i < l; i++) {
+      if(dynAttr[i].split('||')[0].match(/(((:(focus|hover|active))+)|default)/)) {
+        dynCSS[dynCSS.length] = { dyn : RegExp.$1.replace(/^:/, '').split(':').sort().join('_'), shadow : dynAttr[i].split('||')[1] };
+        RegExp.$1 == 'default' && dynAttr[i].match(/important/) && (hasImp = true);
+      }
+    }
+    var fireTrigger = function(arr) {
+      for(var bool = false, i = 0, l = arr.length; i < l; i++) {
+        for(var j = 0, k = dynCSS.length; j < k; j++) {
+          if(arr[i] == dynCSS[j].dyn) {
+            textShadowForMSIE({ sel : '#' + obj.id, shadow : dynCSS[j].shadow});
+            bool = true;
+            break;
+          }
+        }
+        if(bool) {
+          break;
+        }
+      }
+    };
+    if(!hasImp) {
+      evt.type == 'mouseover' && (isActive ? fireTrigger(['focus_hover', 'hover']) : fireTrigger(['hover']));
+      evt.type == 'mouseout' && (isActive ? fireTrigger(['focus', 'default']) : fireTrigger(['default']));
+      evt.type == 'mousedown' && (isActive ? fireTrigger(['active_focus_hover', 'active_hover', 'active_focus', 'active', 'focus_hover', 'hover', 'focus']) : fireTrigger(['active_hover', 'active', 'hover']));
+      evt.type == 'mouseup' && (isHover ? fireTrigger(['focus_hover', 'hover', 'focus']) : fireTrigger(['focus']));
+      evt.type == 'keydown' && (isHover ? fireTrigger(['active_focus_hover', 'active_hover', 'active_focus', 'active', 'focus_hover', 'hover', 'focus']) : fireTrigger(['active_focus', 'active', 'focus']));
+      evt.type == 'keyup' && (isHover ? fireTrigger(['focus_hover', 'hover', 'focus']) : fireTrigger(['focus']));
+      evt.type == 'focus' && (isHover ? fireTrigger(['active_focus_hover', 'active_hover', 'active_focus', 'active', 'focus_hover', 'hover', 'focus']) : fireTrigger(['focus']));
+      evt.type == 'blur' && fireTrigger(['default']);
+    }
+  }
+}
+
+function addEvent(obj, type, listener) {
+  type == 'DOMContentLoaded' ? obj.addEventListener ? obj.addEventListener(type, listener, false) :
+  window.attachEvent ? function() {
+    /*
+    *  doScroll polyfill originally devised by Diego Perini.
+    *  IEContentLoaded - An alternative for DOMContenloaded on Internet Explorer
+    *  http://javascript.nwbox.com/IEContentLoaded/
+    *  Author: Diego Perini (diego.perini at gmail.com) NWBOX S.r.l.
+    *  License: GPL
+    *  Copyright (C) 2007 Diego Perini & NWBOX S.r.l.
+    *  http://javascript.nwbox.com/IEContentLoaded/GNU_GPL.txt
+    */
+    try {
+      document.documentElement.doScroll('left');
+    }
+    catch(e) {
+      setTimeout(arguments.callee, 1);
+      return;
+    }
+    /*  end doScroll polyfill  */
+    listener.call(obj, window.event);
+  }() :
+  window.onload = function(e) { listener.call(window, e || window.event) } :
+  obj.addEventListener ? obj.addEventListener(type, listener, false) :
+  obj.attachEvent ? obj.attachEvent('on' + type, function() { listener.call(obj, window.event) }) :
+  obj['on' + type] = function(e) { listener.call(obj, e || window.event) };
+}
+
+/*  quasi querySelectorAll for MSIE7  */
+(function() {
+  document.querySelectorAll = document.querySelectorAll || (function() {
+    var cNum = (function(n) { return function() { return n++; }})(0);
+    return function(sel) {
+      var distinctSelector = function(obj) {
+        var i, l, xObj = { elm : '*', id : [], eClass : [], pseudo : [], attr : [], rDom : [] };
+        obj = obj.match(/(([a-zA-Z\*]{1}[a-zA-Z0-9]*)|(#[a-zA-Z_]{1}[a-zA-Z0-9_\-]*)|(\.[a-zA-Z_]{1}[a-zA-Z0-9_\-]*)|(::?([a-z]{1}[a-z0-9\(\)\-]*))|(\[[a-zA-Z]{2,}.+?\]){1,})+/g);
+        obj[obj.length - 1].match(/^([a-zA-Z\*]{1}[a-zA-Z0-9]*)/) && (xObj.elm = RegExp.$1);
+        obj[obj.length - 1].match(/#[a-zA-Z_]{1}[a-zA-Z0-9_\-]*/) && (xObj.id = obj[obj.length - 1].match(/#[a-zA-Z_]{1}[a-zA-Z0-9_\-]*/g));
+        for(i = 0, l = xObj.id.length; i < l; i++) {
+          xObj.id[i] = xObj.id[i].replace(/#/, '');
+        }
+        obj[obj.length - 1].match(/\.[a-zA-Z_]{1}[a-zA-Z0-9_\-]*/) && (xObj.eClass = obj[obj.length - 1].match(/\.[a-zA-Z_]{1}[a-zA-Z0-9_\-]*/g));
+        for(i = 0, l = xObj.eClass.length; i < l; i++) {
+          xObj.eClass[i] = xObj.eClass[i].replace(/\./, '');
+        }
+        obj[obj.length - 1].match(/::?[a-z]{1}[a-z0-9\(\)\-]*/) && (xObj.pseudo = obj[obj.length - 1].match(/::?[a-z]{1}[a-z0-9\(\)\-]*/g));
+        for(i = 0, l = xObj.pseudo.length; i < l; i++) {
+          xObj.pseudo[i] = xObj.pseudo[i].replace(/::?/, '');
+        }
+        obj[obj.length - 1].match(/\[([a-zA-Z]{2,}.+)\]/) && (xObj.attr = xObj.attr.concat(RegExp.$1.split('][')));
+        for(i = 0, l = xObj.attr.length; i < l; i++) {
+          xObj.attr[i] = xObj.attr[i].replace(/^\[|\]$/g, '');
+        }
+        if(xObj.id.length == 0) {
+          for(var arr = document.getElementsByTagName(xObj.elm), i = 0, l = arr.length; i < l; i++) {
+            if(xObj.eClass.length > 0) {
+              for(var bool, j = 0, k = xObj.eClass.length; j < k; j++) {
+                bool = false;
+                if(arr[i].className != null) {
+                  arr[i].className.match(xObj.eClass[j]) && (bool = true);
+                }
+                if(bool == false) { break; }
+              }
+              bool && (xObj.id[xObj.id.length] = arr[i].id);
+            }
+            else {
+              xObj.id[xObj.id.length] = arr[i].id;
+            }
+          }
+        }
+        if(obj.length > 1) {
+          for(i = 0, l = obj.length - 1; i < l; i++) {
+            sel.match(RegExp(obj[i] + '(.+?)' + obj[i + 1])) && (xObj.rDom[xObj.rDom.length] = { elm : obj[i], type : RegExp.$1 == ' ' ? 'descend' : RegExp.$1.match(/\>/) ? 'child' : RegExp.$1.match(/\+/) ? 'adjacent' : RegExp.$1.match(/\~/) ? 'general' : null });
+          }
+        }
+        return xObj;
+      };
+      var getObj = function(xObj) {
+        var compareObj = function(elm, rElm, type) {
+          var getPrevSibling = function(pElm) {
+            return pElm.nodeType == 1 ? pElm : (pElm = pElm.previousSibling, pElm != null ? getPrevSibling(pElm) : null);
+          };
+          var getGeneralObj = function(pElm) {
+            var arr = [];
+            for((pElm = pElm.previousSibling) && pElm.nodeType == 1 && (arr[arr.length] = pElm); pElm != null;) {
+              (pElm = pElm.previousSibling) && pElm.nodeType == 1 && (arr[arr.length] = pElm);
+            }
+            return arr;
+          };
+          var getAncestObj = function(pElm) {
+            var arr = [];
+            if(pElm = pElm.parentNode) {
+              for(arr[arr.length] = pElm; pElm.nodeName.toLowerCase() != "body";) {
+                (pElm = pElm.parentNode) && (arr[arr.length] = pElm);
+              }
+            }
+            return arr;
+          };
+          var bool = false;
+          if(type == 'child' || type == 'descend') {
+            var pElm = elm.parentNode;
+            if(rElm.id == pElm.id) {
+              bool = true;
+            }
+            else if(type == 'descend') {
+              for(var arr = getAncestObj(elm.parentNode), i = 0, l = arr.length; i < l; i++) {
+                if(rElm.id == arr[i].id) {
+                  bool = true; break;
+                }
+              }
+            }
+          }
+          else if(type == 'adjacent' || type == 'general') {
+            if(elm.previousSibling != null) {
+              var pElm = getPrevSibling(elm.previousSibling);
+              if(rElm.id == pElm.id) {
+                bool = true;
+              }
+              else if(type == 'general' && pElm.previousSibling != null) {
+                for(var arr = getGeneralObj(pElm), i = 0, l = arr.length; i < l; i++) {
+                  if(rElm.id == arr[i].id) {
+                    bool = true; break;
+                  }
+                }
+              }
+            }
+          }
+          return bool;
+        };
+        var checkPseudo = function(elm, pArr, rElm) {
+          var bool = false;
+          if(pArr.length == 0) {
+            bool = true;
+          }
+          else {
+            for(var i = 0, l = pArr.length; i < l; i++) {
+              if(!rElm) {
+                if(elm.tagName.toLowerCase() == 'a' && pArr[i] == 'link') {
+                  bool = true; break;
+                }
+              }
+              else if(rElm && rElm.childNodes) {
+                if(pArr[i] == 'first-child' && rElm.childNodes[0] == elm) {
+                  bool = true; break;
+                }
+              }
+            }
+          }
+          return bool;
+        };
+        var checkAttr = function(elm, aArr) {
+          var bool = true;
+          if(aArr.length > 0) {
+            for(var aReg = /^([a-zA-Z]+|data\-.+)([\~\|\^\$\*]?=?)["']?([a-zA-Z0-9_\-]+)["']?$/, arr = [], i = 0, l = aArr.length; i < l; i++) {
+              var obj = { attr : '', type : null, val : '' };
+              aArr[i].match(aReg) && (RegExp.$1 && (obj.attr = RegExp.$1), RegExp.$2 == '' && RegExp.$3 && (obj.attr = RegExp.$1 + RegExp.$3), RegExp.$2 != '' && RegExp.$3 && (obj.type = RegExp.$2, obj.val = RegExp.$3));
+              if(elm.getAttributeNode(obj.attr)) {
+                bool = false;
+                if(elm.getAttributeNode(obj.attr).nodeValue != (null || '')) {
+                  if(obj.type == null && obj.val == '') {
+                    bool = true;
+                  }
+                  else {
+                    for(var attArr = elm.getAttributeNode(obj.attr).nodeValue.split(' '), j = 0, k = attArr.length; j < k; j++) {
+                      if((obj.type == '=' || obj.type == '|=') && obj.val == attArr[j]) {
+                        bool = true; break;
+                      }
+                      else if(obj.type == '~=' && obj.val == attArr[j]) {
+                        bool = true; break;
+                      }
+                      else if(obj.type == '|=' && attArr[j].match('^' + obj.val + '\-')) {
+                        bool = true; break;
+                      }
+                      else if(obj.type == '^=' && attArr[j].match('^' + obj.val)) {
+                        bool = true; break;
+                      }
+                      else if(obj.type == '$=' && attArr[j].match(obj.val + '$')) {
+                        bool = true; break;
+                      }
+                      else if(obj.type == '*=' && attArr[j].match(obj.val)) {
+                        bool = true; break;
+                      }
+                      else {
+                        bool = false;
+                      }
+                    }
+                  }
+                }
+                if(bool == false) { break; }
+              }
+              else {
+                bool = false; break;
+              }
+            }
+          }
+          return bool;
+        };
+        var arr = [];
+        if(xObj.id.length > 0) {
+          for(var i = 0, l = xObj.id.length; i < l; i++) {
+            var elm = document.getElementById(xObj.id[i]);
+            if(elm) {
+              if(xObj.rDom.length == 0) {
+                checkPseudo(elm, xObj.pseudo, false) && checkAttr(elm, xObj.attr) && (arr[arr.length] = elm);
+              }
+              else if(xObj.rDom.length == 1) {
+                var rObj = distinctSelector(xObj.rDom[0].elm);
+                if(rObj.id.length > 0) {
+                  for(var type = xObj.rDom[0].type, j = 0, k = rObj.id.length; j < k; j++) {
+                    var rElm = document.getElementById(rObj.id[j]);
+                    rElm && compareObj(elm, rElm, type) && checkPseudo(elm, xObj.pseudo, rElm) && checkAttr(elm, xObj.attr) && (arr[arr.length] = elm);
+                  }
+                }
+              }
+              else if(xObj.rDom.length > 1) {
+                for(var j = 0, k = xObj.rDom.length - 1; j < k; j++) {
+                  var rObj = distinctSelector(xObj.rDom[j + 1].elm);
+                  if(rObj.id.length > 0) {
+                    rObj = getObj({ elm : rObj.elm, id : rObj.id, eClass : rObj.eClass, pseudo : rObj.pseudo, attr : rObj.attr, rDom : [{ elm : xObj.rDom[j].elm, type : xObj.rDom[j].type }] });
+                    var rType = xObj.rDom[j + 1].type;
+                    if(rType) {
+                      for(var m = 0, n = rObj.length; m < n; m++) {
+                        (j == k - 1) && compareObj(elm, rObj[m], rType) && checkPseudo(elm, xObj.pseudo, rObj[m]) && checkAttr(elm, xObj.attr) && (arr[arr.length] = elm);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        return arr;
+      };
+      var qArr = [];
+      try {
+        for(var aTag = document.getElementsByTagName('*'), oId = cNum(), i = 0, l = aTag.length; i < l; i++) {
+          aTag[i].id == '' && (aTag[i].id = 'tmpId' + oId, oId++);
+        }
+        qArr = qArr.concat(getObj(distinctSelector(sel)));
+        for(i = 0, l = aTag.length; i < l; i++) {
+          aTag[i].id.match(/tmpId[0-9]+/) && (aTag[i].id = '');
+        }
+      }
+      catch(e) {
+      }
+      return qArr;
+    };
+  })();
+  document.querySelector = document.querySelector || (function() {
+    return function(sel) {
+      return document.querySelectorAll(sel).length > 0 ? document.querySelectorAll(sel)[0] : null;
+    }
+  })();
+})();
+
+addEvent(document, 'DOMContentLoaded', function() {
+//addEvent(window, 'load', function() {
+  ieVersion >= 7 && ieVersion <= 9 && textShadowForMSIE();
+});
+
+/*  Sample to change shadow(s) at interactive events (eg: onclick)  */
+addEvent(window, 'load', function() {
+  var eObj = { sel : '#someId', shadow : 'green 2px 2px 2px !important' /* new shadow here */ };
+  var elm = document.getElementById(eObj.sel.replace('#', ''));
+  elm && addEvent(elm, 'click', function() {
+    if(ieVersion >= 7 && ieVersion <= 9) {
+      textShadowForMSIE(eObj);
+    }
+    else if(ieVersion > 9 || !isMSIE) {
+      eObj.shadow.match(/(\s*\!\s*important)/) ?
+      elm.style.setProperty('text-shadow', eObj.shadow.replace(RegExp.$1, ''), 'important') :
+      elm.style.setProperty('text-shadow', eObj.shadow, '');
+    }
+  });
+});
