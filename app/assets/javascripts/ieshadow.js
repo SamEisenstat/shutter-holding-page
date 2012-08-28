@@ -21,10 +21,10 @@ function textShadowForMSIE(eObj) {
       else {
         arr = [
           // Write your text-shadow settings here, like below.
-          { sel : 'h2', shadow : '0px 1px 0px #FFFFFF' },
-          { sel : 'h3', shadow : '0px 1px 2px #222222' },
-          { sel : 'h3.notify', shadow : '0px 1px 0em #FFFFFF' },
-          { sel : 'h4', shadow: '0px 1px 2px #202020' }
+          //{ sel : 'h2', shadow : '0px 1px 0px #FFFFFF' },
+          //{ sel : 'h3', shadow : '0px 1px 2px #222222' },
+          //{ sel : 'h3.notify', shadow : '0px 1px 0em #FFFFFF' },
+          //{ sel : 'h4', shadow: '0px 1px 2px #202020' }
 
         ];
         for(var sReg = /text\-shadow\s*:\s*([0-9a-zA-Z\s\-\+\*\&#\.\(\)%\,\!\"\\'\>\<\\]+);?/, aTag = document.getElementsByTagName('*'), oId = cNum(), i = 0, l = aTag.length; i < l; i++) {

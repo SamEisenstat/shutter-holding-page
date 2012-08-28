@@ -1,7 +1,11 @@
 hmtl, body { height: 100%;}
-h1, h2, h3, h4 { margin: 0; padding: 0; font-weight: normal; -webkit-font-smoothing: antialiased; text-shadow:rgba(0,0,0,0.01) 0 0 0;
-
-;}
+h1, h2, h3, h4 {
+  margin: 0; padding: 0;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  text-shadow:rgba(0,0,0,0.01) 0 0 0;
+  text-rendering:optimizelegibility;
+}
 
 
 html { 
@@ -48,7 +52,7 @@ body {
 
 .logo{
 	text-align: center;
-	padding-bottom: 23px;
+	padding-bottom: 27px;
 	padding-left: 5px;
 }
 
@@ -68,7 +72,7 @@ h2 {
 
 h2.slogan {
   padding-left: 10px;
-  padding-bottom: 37px;
+  padding-bottom: 32px;
 }
 
 h3 {
@@ -76,14 +80,14 @@ h3 {
   text-align: center;
   font-family: 'Proxima Nova', Helvetica, sans-serif;
   font-size-adjust: 0.482;
-  color: #FFFFFF;
-  text-shadow: 0px 1px 2px #222222;
-  /*-webkit-font-smoothing:antialiased;-webkit-appearance:none;*/
+   /*-webkit-font-smoothing:antialiased;-webkit-appearance:none;*/
 }
 
 h3.slogan {
   font-size: 20px;
   padding-left: 10px;
+  color: #FFFFFF;
+  text-shadow: 0px 1px 2px #222222;
 }
 
 h3.notify {
@@ -291,6 +295,36 @@ div.features {
 #email:hover {
 	background-position: 0px 38px;
 }
+
+label{
+  position:absolute;
+  left:-9999px;
+}
+input,
+textarea{
+  font:inherit;
+  resize:none;
+}
+
+[placeholder]{
+  cursor:text;
+  padding:5px;
+  border:1px solid #999;
+
+  -moz-border-radius:2px;
+  -webkit-border-radius:2px;
+  border-radius:2px;
+}
+[placeholder]:active,
+[placeholder]:focus{
+  cursor:text;
+  border:1px solid #0a0;
+
+  -moz-box-shadow:0 0 5px #0a0, 0 0 5px rgba(0,0,0,0.25) inset;
+  -webkit-box-shadow:0 0 5px #0a0, 0 0 5px rgba(0,0,0,0.25) inset;
+  box-shadow:0 0 5px #0a0, 0 0 5px rgba(0,0,0,0.25) inset;
+}
+
 
 @font-face {
   font-family: "Proxima Nova";
