@@ -12,4 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-1.8.0.min.js
+//= require jquery-ui-1.8.23.custom.min.js
+//= require script.js
+//= require jquery.placeholder.js
+//= require ga.js
 //= require_tree .
