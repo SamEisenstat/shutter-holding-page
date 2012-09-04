@@ -1,0 +1,563 @@
+mkdir shutterkick-holding-page
+ls
+ls -a
+ls bin/
+cd shutterkick-holding-page/
+cd ..
+sudo yum update
+sudo yum install ruby-irb.noarch
+cd /usr/share/
+ls -R | grep ruby.h
+ls -R .. | grep ruby.h
+ls -R / | grep ruby.h
+cd ../lib
+cd ../lib64/
+ls
+cd /
+ls -Ra | grep ruby
+cd /usr/lib/ruby/1.8/
+ls
+ls -l
+sudo yum install gem
+yum search
+yum search gem
+irb
+ruby --version
+ls -Ra /
+ls -Ra / | grep ruby.h
+gem install rails
+gem1.9 install rails
+yum search gem
+rubygems-devel.noarch
+sudo yum install rubygems-devel.noarch
+gem install rails
+sudo gem install rails
+sudo yum install rubygems-devel
+sudo gem install rails
+echo $PATH
+cd ~
+set
+set | grep lib
+gem --help
+sudo yum install ruby-devel
+em install rails
+gem install rails
+ls /usr/lib/ruby/gems/1.8/
+sudo gem install rails
+bg "%sudo"
+fg "%sudo"
+less /usr/lib/ruby/gems/1.8/gems/json-1.7.5/ext/json/ext/generator/gem_make.out 
+yum search make
+yum install make
+sudo yum install make
+sudo gem install rails
+yum search gcc
+sudo yum install gcc
+yum search gcc
+sudo gem install rails
+ruby --version
+gem install rdoc-data
+sudo gem install rdoc-data
+rdoc-data --install
+sudo rdoc-data --install
+sudo yum install git
+cd shutterkick-holding-page/
+git clone git@github.com:SamEisenstat/shutterkick-holding-page.git
+ls ../.ssh/
+git clone git://github.com/SamEisenstat/shutterkick-holding-page.git
+ls
+ls shutterkick-holding-page/
+mv shutterkick-holding-page/ ../shutterkick-holding-pag
+ls
+cd ..
+rmdir shutterkick-holding-page/
+mv shutterkick-holding-pag/ shutterkick-holding-page
+ls
+cd shutterkick-holding-page/
+ls
+rails server
+bundle install
+sudo yum install sqlite3-devel
+yum search sqlite
+yum search sqlite3
+sudo yum install sqlite-devel
+bundle install
+yum search libv8
+yum search libv
+yum search rubyracer
+ls
+ls shutterkick-holding-page/
+cd shutterkick-holding-page/
+bundle install 
+yum search v8
+gem --help
+gem list 
+gem help commands
+gem search v8
+vi Gemfile
+bundle install 
+rails server
+less Gemfile
+vi config/environment.rb 
+git status
+rails server --holp
+rails server --help
+rails server -e production
+ls config
+less config/initializers/session_store.rb 
+vi config/initializers/session_store.rb 
+vi config/initializers/wrap_parameters.rb 
+rails server -e production
+rails server --help
+rails server --port=80 --environment=production
+rails server --port=3000 --environment=production
+rake db:migrate
+rake db:create
+rails server --port=3000 --environment=production
+ls public/
+rails server --port=80 --environment=production
+sudo rails server --port=80 --environment=production
+rake db:create
+vi Gemfile
+bundle install
+vi Gemfile
+ls public/
+ls -l public/
+mv public/favicon.ico public/empty-favicon.ico
+sudo rails server --port=80 --environment=production
+vi config/application.rb 
+sudo rails server --port=80 --environment=production
+rake db:create
+vi config/application.rb 
+ls db/
+rake db:migrate
+rake db:migrate --trace
+ls -l db
+rake --help
+rails --help
+rake db:create RAILS_ENV=production
+rake db:migrate RAILS_ENV=production
+rails server
+vi Gemfile
+sudo rails server --port=80 --environment=production
+rake assets:precompile
+git status
+less db/schema.rb 
+git status
+git log
+git status
+git checkout Gemfile Gemfile.lock config/initializers/ db/schema.rb 
+rm public/empty-favicon.ico 
+git status
+git pull
+sudo rails server --port=80 --environment=production
+vi Gemfile
+sudo rails server --port=80 --environment=production
+git status
+git reset --hard HEAD
+git status
+git pull
+vi Gemfile
+sudo rails server --port=80 --environment=production
+ls public/assets/
+exit
+ls
+cd shutterkick-holding-page/
+ls ../bin/
+ls
+rails server -p 80 -e production
+sudo rails server -p 80 -e production
+ls public/
+ls public/assets/
+less config/application.rb 
+less app/assets/javascripts/application.js 
+git log
+vi config/environments/production.rb 
+git status
+sudo rails server --port=80 --environment=production
+bg sudo
+exit
+ls
+cd shutterkick-holding-page/
+ls
+ls app/assets/stylesheets/
+ls public/assets/
+git status
+git pull
+git status
+cd shutterkick-holding-page/
+git status
+git log
+yum search nginx
+sudo yum install nginx
+nginx --help
+nginx -h
+git status
+cd shutterkick-holding-page/
+git status
+ls /etc/nginx/
+less /etc/nginx/nginx.conf
+gem install thin
+sudo gem install thin
+yum search mkmf
+yum search ruby
+yum list
+yum search crypto
+sudo yum install g++
+yum search g++
+g++
+yum search gcc
+sudo yum install gcc-c++
+cd shutterkick-holding-page/
+vi Gemfile
+top
+ps all
+cd shutterkick-holding-page/
+git pull
+sudo rails server --port=80 --environment=production &
+ps all
+git pull
+cd shutterkick-holding-page/
+git pull
+ps
+ps all
+ps --help
+ps -A
+ps -A | grep sudo
+kill 3969
+sudo kill 3969
+sudo rails server --port=80 --environment=production &
+ls
+yum --help
+sudo yum erase gcc-c++
+cd shutterkick-holding-page/
+vi Gemfile
+bundle install
+vi Gemfile
+rails server --help
+rails server
+rails server -e=production
+rails server -e production
+ps all
+ps -a
+ps -A
+kill 4057
+sudo kill 4057
+rails server -e production
+groups
+users
+pwd
+ps -A
+ps -A | grep sudo
+git status
+cd shutterkick-holding-page/
+git status
+cd shutterkick-holding-page/
+git status
+vi config/environments/production.rb 
+git reset HEAD
+git reset --hard HEAD
+git pull
+git status
+less /etc/nginx/nginx.conf
+cp to-be-moved/etc/nginx/nginx.conf /etc/nginx/nginx.conf
+sudo cp to-be-moved/etc/nginx/nginx.conf /etc/nginx/nginx.conf
+worker_processes 1;
+user nobody nogroup;
+pid /tmp/nginx.pid;
+error_log /tmp/nginx.error.log;
+events {
+  worker_connections 1024; # increase if you have lots of clients
+  # Set this to on if you have more than 1 working processes
+  # This will allow only one child to watch the pollset and accept
+  # a connection to a socket
+  accept_mutex off; # "on" if nginx worker_processes > 1
+}
+http {
+  include mime.types;
+  default_type application/octet-stream;
+  access_log /tmp/nginx.access.log combined;
+  # This tells Nginx to ignore the contents of a file it is sending
+  # and uses the kernel sendfile instead
+  sendfile on;
+  # Set this to on if you have sendfile on
+sudo /etc/init.d/nginx start
+vi /etc/nginx/nginx.conf
+sudo vi /etc/nginx/nginx.conf
+ls
+sudo /etc/init.d/nginx start
+git log
+cd shutterkick-holding-page/
+git status
+unicorn -c config/unicorn.rb 
+ps --help
+ps aux
+unicorn -c config/unicorn.rb 
+cd shutterkick-holding-page/
+unicorn -c config/unicorn.rb 
+ps aux
+unicorn --help
+unicorn -cD config/unicorn.rb 
+unicorn -Dc config/unicorn.rb 
+ls
+ls log/
+less log/unicorn.stderr.log 
+vi Gemfile
+git status
+unicorn -Dc config/unicorn.rb 
+less log/unicorn.stderr.log 
+exit
+cd shutterkick-holding-page/
+less log/unicorn.stderr.log 
+bundle install
+less Gemfile
+unicorn -c config/unicorn.rb 
+rm log/\=production.log 
+unicorn -c config/unicorn.rb 
+gem --help
+cd shutterkick-holding-page/log/
+ls
+tail -F unicorn.stderr.log 
+tail -F shutterkick-holding-page/log/unicorn.stderr.log 
+gem help commands
+gem uninstall execjs
+less Gemfile
+cd shutterkick-holding-page/
+less Gemfile
+vi Gemfile
+git status
+unicorn -c config/unicorn.rb 
+vi Gemfile
+unicorn -c config/unicorn.rb 
+vi config/unicorn.rb 
+unicorn -c config/unicorn.rb 
+unicorn -Dc config/unicorn.rb 
+ps aux
+cd shutterkick-holding-page/
+ls log/
+less log/production.log 
+cd /
+ls
+ls var
+ls var/log/
+ls var/log/nginx/
+ls var/log/nginx/error.log 
+less var/log/nginx/error.log 
+vi etc/nginx/nginx.conf
+less var/log/nginx/error.log 
+tail -F var/log/nginx/error.log 
+vi etc/nginx/nginx.conf
+vi /etc/nginx/nginx.conf
+exit
+ps aux
+less /etc/nginx/nginx.conf
+exit
+ls /var/run/
+exit
+ls /var/log/nginx/
+exit
+cd /etc/nginx/nginx.conf
+cd /etc/init.d/
+less nginx 
+exit
+ls
+cd shutterkick-holding-page/
+ls
+ps aux
+vi /etc/nginx/nginx.conf
+sudo vi /etc/nginx/nginx.conf
+vi /etc/nginx/nginx.conf
+cat /tmp/nginx.pid 
+kill -HUP 5918
+sudo kill -HUP 5918
+ps --hepl
+ps aux
+tail -F /var/log/nginx/error.log 
+sudo vi /etc/nginx/nginx.conf
+sudo kill -HUP 5918
+tail -F /var/log/nginx/error.log 
+/etc/init.d/nginx stop
+sudo /etc/init.d/nginx stop
+ps aux
+sudo /etc/init.d/nginx restart
+service nginx stop
+sudo service nginx stop
+/etc/init.d/nginx status
+ls -l /etc/init.d/nginx 
+sudo service nginx stop
+sudo kill --help
+kill -9 `cat /tmp/nginx.pid`
+sudo kill -15 `cat /tmp/nginx.pid`
+ps aux
+ps aux | grep nginx
+/etc/init.d/nginx start
+sudo /etc/init.d/nginx start
+ps aux
+tail -F /var/log/nginx/error.log 
+vi /etc/nginx/nginx.conf
+tail -F /var/log/nginx/error.log 
+groups
+groups --help
+cat /etc/passwd | cut -d: -f1
+ls
+cd shutterkick-holding-page/public/
+ls -l
+ls -l assets/
+ls -l
+cd ..
+ls -l
+cd ..
+ls -l
+cd ..
+ls -l
+chmod go+rx ec2-user/
+ls -l
+cd ~
+cd shutterkick-holding-page/
+ls
+cd db/
+ls
+ls production.sqlite3 
+cd ..
+rake db:migrate RAILS_ENV=production
+ls db/migrate/
+less db/migrate/20120823184814_create_users.rb 
+vi config/unicorn.rb 
+unicorn --help
+killall unicorn
+sudo killall unicorn
+ps aux
+kill -15 6115 6116 6117
+ps aux | grep unicorn
+unicorn -D -c config/unicorn.rb -E production
+ls public/
+ls public/assets/
+git status
+git diff db/schema.rb 
+git diff Gemfile
+git diff config/unicorn.rb 
+git diff nginx.conf
+git diff to-be-moved/etc/nginx/nginx.conf 
+diff to-be-moved/etc/nginx/nginx.conf /etc/nginx/nginx.conf
+tail -F var/log/nginx/error.log 
+tail -F /var/log/nginx/error.log 
+git reset --hard HEAD
+git pull
+git status
+ps aux
+kill -15 6971 6972 6973
+unicorn -D -c config/unicorn.rb -E production
+less config/unicorn.rb 
+less log/unicorn.stderr.log 
+less Gemfile
+bundle install --without assets
+less Gemfile
+bundle install --without assets --without development
+bundle install --deployment
+exit
+cat /etc/passwd | cut -d: -f1
+cat /etc/group | cut -d: -f1
+ps --help
+ps U nginx
+ps U ec2-user
+ps U nobody
+ps -G aux
+ps -f aux
+ps aux -f
+ps ax -f
+less .bash_history 
+less /var/log/nginx/error.log 
+ls -l /etc/nginx/
+ls 
+ls -l shutterkick-holding-page/
+/etc/init.d/nginx restart
+sudo /etc/init.d/nginx restart
+ls -l /etc/nginx/
+ps aux
+kill -15 6597
+sudo kill -15 6597
+vi /etc/nginx/nginx.conf
+sudo vi /etc/nginx/nginx.conf
+vi shutterkick-holding-page/to-be-moved/etc/nginx/nginx.conf 
+sudo mv shutterkick-holding-page/to-be-moved/etc/nginx/nginx.conf /etc/nginx/nginx.conf
+vi shutterkick-holding-page/to-be-moved/etc/nginx/nginx.conf 
+cp /etc/nginx/nginx.conf shutterkick-holding-page/to-be-moved/etc/nginx/nginx.cong
+cd shutterkick-holding-page/
+ls
+ls -l
+ls -l config
+cd to-be-moved/etc/nginx/
+ls -l
+mv nginx.cong nginx.conf
+vi nginx.conf 
+cp nginx.conf /etc/nginx/nginx.conf
+less nginx.conf 
+less /etc/nginx/nginx.conf
+ps aux
+ps aux | grep nginx
+kill -15 6731
+ps aux | grep nginx
+sudo /etc/init.d/nginx start
+sudo /etc/init.d/nginx restart
+cd ~
+ls shutterkick-holding-page/public/
+ls shutterkick-holding-page/public/assets/
+cd shutterkick-holding-page/
+less to-be-moved/etc/nginx/nginx.conf 
+pwd
+more to-be-moved/etc/nginx/nginx.conf 
+pwd
+sudo vi /etc/init.d/nginx 
+sudo vi /etc/nginx/nginx.conf
+sudo /etc/init.d/nginx restart
+tail -F /var/log/nginx/
+tail -F /var/log/nginx/error.log 
+less shutterkick-holding-page/Gemfile
+less shutterkick-holding-page/Gemfile.lock 
+exit
+cd shutterkick-holding-page/
+git pull 
+bundle install
+rake assets:precompile
+git status
+git pull
+ps aux
+/etc/init.d/nginx stop
+sudo /etc/init.d/nginx stop
+less /etc/init.d/nginx 
+git pull
+cp to-be-moved/etc/init.d/unicorn /etc/init.d/unicorn
+sudo cp to-be-moved/etc/init.d/unicorn /etc/init.d/unicorn
+diff to-be-moved/etc/nginx/nginx.conf /etc/nginx/nginx.conf
+sudo cp to-be-moved/etc/nginx/nginx.conf /etc/nginx/nginx.conf
+chmod +x /etc/init.d/unicorn 
+sudo chmod +x /etc/init.d/unicorn 
+ps aux
+ps aux | grep unicorn
+ps aux | grep nginx
+/etc/init.d/nginx start
+sudo /etc/init.d/nginx start
+sudo /etc/init.d/unicorn start
+which unicorn
+ls config
+less config/unicorn.rb 
+git pull
+sudo cp to-be-moved/etc/init.d/unicorn /etc/init.d/unicorn
+sudo /etc/init.d/unicorn start
+ps aux
+exit
+cd shutterkick-holding-page/
+git pull
+sudo /etc/init.d/unicorn stop
+sudo /etc/init.d/nginx restart
+sudo /etc/init.d/unicorn start
+exit
+cd shutterkick-holding-page/
+sudo /etc/init.d/unicorn stop
+sudo /etc/init.d/unicorn nginx
+sudo /etc/init.d/nginx stop
+git pull
+git status
+sudo /etc/init.d/nginx start
+sudo /etc/init.d/unicorn start
+exit
